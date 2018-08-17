@@ -1,0 +1,99 @@
+---
+Author: Lajos Zaccomer
+Version: 155 17-CNL 113 420, Rev. A
+Date: 2006-11-14
+
+---
+= UDP Protocol Modules for TTCN-3 Toolset with TITAN, Function Specification
+:author: Lajos Zaccomer
+:revnumber: 155 17-CNL 113 420, Rev. A
+:revdate: 2006-11-14
+:toc:
+
+== How to Read This Document
+
+This is the Function Specification for the set of UDP protocol modules. UDP protocol modules are developed for the TTCN-3 Toolset with TITAN.
+
+== Scope
+
+The purpose of this document is to specify the content of the UDP protocol modules.
+
+= General
+
+Protocol modules implement the message structures of the related protocol in a formalized way, using the standard specification language TTCN-3. This allows defining of test data (templates) in the TTCN-3 language and correctly encoding/decoding messages when executing test suites using the TITAN TTCN-3 test environment.
+
+Protocol modules are using TITAN’s RAW encoding attributes <<_3, ‎[3]>> and hence is usable with the TITAN test toolset only.
+
+= Functional Specification
+
+== Protocol Version Implemented
+
+This set of protocol modules implements protocol messages and constants of the UDP protocol (see <<_1, ‎[1]>>) with the modifications specified in <<modifications-deviations-related-to-the-protocol-specification, Modifications/Deviations Related to the Protocol Specification>> .
+
+[[modifications-deviations-related-to-the-protocol-specification]]
+== Modifications/Deviations Related to the Protocol Specification
+
+None.
+
+[[encoding-decoding-and-other-related-functions]]
+== Encoding/Decoding and Other Related Functions
+
+This product also contains encoding/decoding functions which assure correct encoding of messages when sent from TITAN and correct decoding of messages when received by TITAN. Implemented encoding/decoding functions:
+
+[cols=3*,options=header]
+|===
+
+|Name
+|Type of formal parameters
+|Type of return value
+
+|`f_UDP_enc`
+|(UDP_packet)
+|returns octetstring
+
+|`f_UDP_dec`
+|(octetstring)
+|returns UDP_packet
+|===
+
+The product also provides some additional functionality to the user via the following functions. The `f_UDP_pseudo_header_enc()` can be used to encode the UDP pseudo header. The `f_UDP_checksum()` can be used to calculate the UDP checksum value.
+
+[cols=3*,options=header]
+|===
+
+|Name
+|Type of formal parameters
+|Type of return value
+
+|`f_UDP_pseudo_header_enc`
+|(UDP_pseudo_header)
+|returns octetstring
+
+|`f_UDP_checksum`
+|(octetstring)
+|returns OCT2
+|===
+
+= Terminology
+
+No specific terminology is used.
+
+= Abbreviations
+
+RFC:: Request For Comments
+
+TTCN-3:: Testing and Test Control Notation version 3
+
+UDP:: User Datagram Protocol
+
+= References
+
+[[_1]]
+[1] RFC 768 – User Datagram Protocol
+
+[[_2]]
+[2] ETSI ES 201 873-1 v.3.1.1 (2005-06) +
+The Testing and Test Control Notation version 3. Part 1: Core Language
+
+[[_3]]
+[3] User Documentation for the TITAN TTCN-3 Test Executor
